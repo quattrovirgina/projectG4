@@ -4,4 +4,6 @@ import lombok.Data;
 
 @Data
 public class ProductDeletedDto {
+    private int userPk;
+    private int productPk;
 }
