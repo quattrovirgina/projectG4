@@ -6,7 +6,7 @@ spring:
     password: green502
 
 mybatis:
-  mapper-locations: mappers/**/*.xml
+  mapper-locations: mapper/**/*.xml
 
 springdoc:
   swagger-ui:

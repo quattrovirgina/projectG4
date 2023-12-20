@@ -53,9 +53,19 @@ public class ProductService {
     public ResVo comP(ProductCompleteDto dto) {
         int result = pMapper.completeProduct(dto);
 
+        ProductEntity entity = pMapper.selEntity(dto.getProductPk());
+
         if(result == 0) {
             return new ResVo(0);
         }
+
+        if(entity.getBuyingCheck() != 0) {
+            log.info("entity check : {}", entity.getBuyingCheck());
+            return new ResVo(0);
+        }
+
         return new ResVo(1);
+
+
     }
 }

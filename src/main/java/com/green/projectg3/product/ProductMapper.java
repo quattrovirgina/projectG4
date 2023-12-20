@@ -24,6 +24,9 @@ public interface ProductMapper {
 
     int deletedProduct(ProductDelDto dto);
 
+    //Entity
+    ProductEntity selEntity(int productPk);
+
 
 
 
