@@ -15,10 +15,12 @@ import java.util.List;
 public class ProductService {
     private final ProductMapper pMapper;
 
-    public ResVo postIt(ProductInsDto dto) {
+    public ResVo postProduct(ProductInsDto dto) {
+        log.info("dto: {}", dto);
         int result = pMapper.insProduct(dto);
 
         if(result == 0) {
+
             return new ResVo(0);
 
         }

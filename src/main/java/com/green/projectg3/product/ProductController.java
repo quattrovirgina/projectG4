@@ -17,8 +17,9 @@ public class ProductController {
     private final ProductService service;
 
     @PostMapping
-    public ResVo Postit(@RequestBody ProductInsDto dto) {
-        return service.postIt(dto);
+    public ResVo postProduct(@RequestBody ProductInsDto dto) {
+        log.info("result: {}", dto);
+        return service.postProduct(dto);
     }
 
     @GetMapping

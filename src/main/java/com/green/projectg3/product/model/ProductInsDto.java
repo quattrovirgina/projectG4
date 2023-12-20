@@ -12,7 +12,7 @@ public class ProductInsDto {
 
     private int userPk;
 
-    private int category;
+    private int categoryPk;
 
     private String productNm;
 
