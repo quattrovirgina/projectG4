@@ -12,7 +12,7 @@ import java.util.List;
 public interface CategoryMapper {
     int insCategory(CategoryInsDto dto);
 
-    List<CategorySelVo> selCategory(CategorySelDto dto);
+    List<CategorySelVo> selCategory();
 
     int updCategory(CategoryUpdDto dto);
 

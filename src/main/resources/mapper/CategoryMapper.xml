@@ -6,9 +6,9 @@
 <!-- 구성 테이블 : category_pk, category_nm -->
 <mapper namespace="com.green.projectg3.category.CategoryMapper">
     <!-- 카테고리를 새로 추가할 쿼리문 -->
-    <insert id="insCategory">
+    <insert id="insCategory" useGeneratedKeys="true" keyProperty="categoryPk">
         INSERT INTO t_category
-        FROM category_nm = #{categoryNm}
+        SET category_nm = #{categoryNm}
     </insert>
 
     <!-- 카테고리 목록을 조회할 쿼리문 -->
@@ -20,13 +20,13 @@
     <!-- 카테고리를 수정할 쿼리문 -->
     <update id="updCategory">
         UPDATE t_category
-        SET category_pk = #{categoryPk}, product_nm = #{productNm}
+        SET category_nm = #{categoryNm}
+        WHERE category_pk = #{categoryPk}
     </update>
 
     <!-- 카테고리를 삭제할 쿼리문 -->
     <delete id="delCategory">
         DELETE FROM t_category
-        WHERE product_pk = #{productPk}
-        AND buying_check = 0 AND user_pk = #{userPk}
+        WHERE category_pk = #{categoryPk}
     </delete>
 </mapper>
