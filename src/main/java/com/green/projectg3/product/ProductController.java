@@ -24,19 +24,14 @@ public class ProductController {
 
     @GetMapping
     public List<ProductSelVo> Getit(ProductSelDto dto) {
-        try {
-            if(dto.getIsList() > 2 || dto.getIsList() < 0){
-                throw new Exception();
-            };
-        } catch (Exception e) {
-
-        }
 
         return service.getP(dto);
     }
 
     @PutMapping
     public ResVo putIt(@RequestBody ProductUpdDto dto) {
+
+
         return service.putP(dto);
     }
 

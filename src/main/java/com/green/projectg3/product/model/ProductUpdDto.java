@@ -1,9 +1,11 @@
 package com.green.projectg3.product.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
 @Schema(title="장바구니에서 수정할 목록이 있을경우")
 public class ProductUpdDto {
     private int productPk;

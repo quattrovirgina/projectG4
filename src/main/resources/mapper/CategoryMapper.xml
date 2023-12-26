@@ -29,4 +29,11 @@
         DELETE FROM t_category
         WHERE category_pk = #{categoryPk}
     </delete>
+
+    <select id="selByCategory">
+        SELECT category_pk AS categoryPk
+        FROM t_category
+        WHERE category_pk = #{categoryPk}
+    </select>
+
 </mapper>

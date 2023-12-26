@@ -1,5 +1,8 @@
 package com.green.projectg3.product;
 
+import com.green.projectg3.common.Exception.Cody;
+import com.green.projectg3.common.Exception.Const;
+import com.green.projectg3.common.Exception.NoDataExpection;
 import com.green.projectg3.common.ResVo;
 import com.green.projectg3.product.model.*;
 import lombok.RequiredArgsConstructor;
@@ -32,12 +35,31 @@ public class ProductService {
     }
 
     public ResVo putP(ProductUpdDto dto) {
+
+        ProductEntity en = pMapper.selEntity(dto.getProductPk());
+        Integer ca = pMapper.selByCategory(dto.getCategoryPk());
+
+        if(en == null || dto.getProductPk() <= 0) {
+            throw new NoDataExpection(String.format("존재하지 않는 pk입니다"));
+        }
+
+
+        if(en == null )
+
+        if(dto.getUserPk() <= 0) {
+            throw new NoDataExpection(String.format("없는 userpk"));
+        }
+        if(ca == null){
+            throw new NoDataExpection(String.format("없는 categorypk"));
+        }
+
+
+
+
+
         int result = pMapper.updProduct(dto);
 
-        if(result == 1) {
-            return new ResVo(1);
-        }
-        return new ResVo(0);
+        return new ResVo(1);
     }
 
     public ResVo delP(ProductDelDto dto) {
@@ -53,14 +75,7 @@ public class ProductService {
     public ResVo comP(ProductCompleteDto dto) {
         int result = pMapper.completeProduct(dto);
 
-        ProductEntity entity = pMapper.selEntity(dto.getProductPk());
-
         if(result == 0) {
-            return new ResVo(0);
-        }
-
-        if(entity.getBuyingCheck() != 0) {
-            log.info("entity check : {}", entity.getBuyingCheck());
             return new ResVo(0);
         }
 
