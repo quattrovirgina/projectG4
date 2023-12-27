@@ -16,7 +16,15 @@ public class ProductEntity {
 
     private int categoryPk;
 
+    private int buyingCheck;
+
     private String productNm;
 
     private String memo;
+
+    private String buyingDate;
+
+    private String createdAt;
+
+    private String updatedAt;
 }

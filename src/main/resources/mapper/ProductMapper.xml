@@ -51,10 +51,10 @@
         <!-- isList가 2일경우, 이 상품들은 삭제처리하고 productpk값들은 리스트에 저장할것 -->
         <choose>
             <!-- 만약 프론트에서 isList에 0을 넣게 된다면 -->
-            <when test="isList == 0">
+            <when test="choiceList == 0">
                 SELECT A.product_pk AS productPk, B.category_nm AS categoryNm,
                 A.product_nm AS productNm, A.memo, A.buying_check AS buyingCheck,
-                A.buying_date AS buyingDate, A.created_at AS createdAt
+                A.buying_date AS buyingDate, A.created_at AS createdAt, A.category_pk AS categoryPk
                 FROM t_purchase_product A
                 <!-- t_purchase_product(A)에서 product_pk(productPk), product_nm(productNm), -->
                 <!-- memo, buying_check(buyingCheck), buying_date(buyingDate)를 select하고 -->
@@ -66,20 +66,20 @@
                 <!-- 조회하도록 한다 -->
             </when>
             <!-- 만약 isList에 1을 넣게 될경우 -->
-            <when test="isList == 1">
+            <when test="choiceList == 1">
                 SELECT A.product_pk AS productPk, B.category_nm AS categoryNm,
                 A.product_nm AS productNm, A.memo, A.buying_check AS buyingCheck,
-                A.buying_date AS buyingDate, A.created_at AS createdAt
+                A.buying_date AS buyingDate, A.created_at AS createdAt, A.category_pk AS categoryPk
                 FROM t_purchase_product A
                 JOIN t_category B ON A.category_pk = B.category_pk
                 WHERE A.user_pk = #{userPk} AND A.buying_check = 0
                 <!-- buying_check가 0인, 즉 구매예정인 상품들 위주로 조회할것 -->
             </when>
             <!-- 만약 isList에 2를 넣게될경우 -->
-            <when test="isList == 2">
+            <when test="choiceList == 2">
                 SELECT A.product_pk AS productPk, B.category_nm AS categoryNm,
                 A.product_nm AS productNm, A.memo, A.buying_check AS buyingCheck,
-                A.buying_date AS buyingDate, A.created_at AS createdAt
+                A.buying_date AS buyingDate, A.created_at AS createdAt, A.category_pk AS categoryPk
                 FROM t_purchase_product A
                 JOIN t_category B ON A.category_pk = B.category_pk
                 WHERE A.user_pk = #{userPk} AND A.buying_check = 1
@@ -122,11 +122,19 @@
         WHERE product_pk = #{productPk} AND user_pk = #{userPk}
         <!-- 지정된 product_pk가 구매확정 났다면 -->
     </update>
+
+    <!-- 확정난 상품을 취소하는 쿼리문 -->
+    <update id = "returnProduct">
+        UPDATE t_purchase_product
+        SET buying_check = 0, buying_date = NULL
+        WHERE product_pk = #{productPk} AND user_pk = #{userPk}
+    </update>
+
     <!-- 구매확정 났을경우 리스트에서 삭제한것처럼 숨기고(2) 숨겨놓은 리스트에다가 pk값만 추가할것 -->
     <!-- 구매확정해서 삭제처리한 물건목록의 buying_check값을 2로 올린 뒤 -->
     <!-- 전달받은 product_pk을 foreach collection에서 속성값으로 넣어줘 숨길물건 목록에다 따로 처리하도록 하고 -->
     <!-- 그 이후에는 buying_check의 값을 다시 1로 되돌려놓는다. 구매확정난걸 삭제해야하기 때문 -->
-    <update id="deletedProduct">
+    <update id="hideProduct">
         UPDATE t_purchase_product
         <!-- t_purchase_product에서 업데이트 한다 -->
         SET buying_check = 2
@@ -139,7 +147,6 @@
         </foreach>-->
         AND buying_check = 1
     </update>
-
     <!-- entity 쿼리문: t_purchase_product의 productPk 하나만으로 모든 컬럼값을 조회한다. -->
     <!--들어가야 할것: productPk, userPk, categoryPk, productNm, -->
     <!-- memo, createdAt, updatedAt, buyingCheck, buyingDate -->
@@ -149,6 +156,13 @@
         buying_date as buyingDate
         FROM t_purchase_product
         WHERE product_pk = #{productPk}
+    </select>
+
+    <select id="checkByUser">
+        <!-- 가입된 유저의 유무 -->
+        SELECT user_pk AS userPk
+        FROM t_user
+        WHERE user_pk = #{userPk}
     </select>
 
 </mapper>

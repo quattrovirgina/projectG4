@@ -8,6 +8,6 @@ import lombok.Data;
 public class ProductSelDto {
     private int userPk;
 
-    private int isList;
+    private int choiceList;
     // isList는 프론트에서 0, 1, 2를 받는 변수
 }

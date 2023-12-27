@@ -6,7 +6,10 @@ import lombok.Data;
 @Data
 @Schema(name="리스트 응답 vo")
 public class ProductSelVo {
+
     private int productPk;
+
+    private int categoryPk;
 
     private String categoryNm;
 

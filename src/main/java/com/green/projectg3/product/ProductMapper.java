@@ -22,12 +22,19 @@ public interface ProductMapper {
 
     int completeProduct(ProductCompleteDto dto);
 
-    int deletedProduct(ProductDelDto dto);
+    int returnProduct(ProductCompleteDto dto);
+
+    int hideProduct(ProductDelDto dto);
 
     ProductEntity selEntity(int productPk);
 
-    Integer selByCategory(int categoryPk);
+
+    Integer checkByUser(int userPk);
+    // Integer는 주소값까지 같이 불러올수 있음
+    // 만약 불러오는 값이 없으면 null이 들어감
+
     //Entity
+
 
 
 

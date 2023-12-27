@@ -18,3 +18,5 @@ public class ProductInsDto {
 
     private String memo;
 }
+
+// pk = 0, Nm = ' ' 혹은 Nm = null, userpk가 없을경우

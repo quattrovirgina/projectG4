@@ -17,4 +17,7 @@ public interface CategoryMapper {
     int updCategory(CategoryUpdDto dto);
 
     int delCategory(CategoryDelDto dto);
+
+    Integer selByCategory(int categoryPk);
+
 }
