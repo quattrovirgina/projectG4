@@ -20,9 +20,9 @@ public interface ProductMapper {
 
     int delProduct(ProductDelDto dto);
 
-    int completeProduct(ProductCompleteDto dto);
+    int completeProduct(ProductCheckDto dto);
 
-    int returnProduct(ProductCompleteDto dto);
+    int returnProduct(ProductCheckDto dto);
 
     int hideProduct(ProductDelDto dto);
 

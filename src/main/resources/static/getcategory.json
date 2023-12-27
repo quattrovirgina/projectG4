@@ -1,0 +1,14 @@
+[
+  {
+    "categoryPk": 1,
+    "categoryNm": "기타"
+  },
+  {
+    "categoryPk": 2,
+    "categoryNm": "생활용품"
+  },
+  {
+    "categoryPk": 3,
+    "categoryNm": "식료품"
+  }
+]

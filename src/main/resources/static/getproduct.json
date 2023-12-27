@@ -1,0 +1,22 @@
+[
+  {
+    "productPk": 18,
+    "userPk": 1,
+    "productNm": "가나다라마바사",
+    "categoryNm": "기타",
+    "memo": "메모",
+    "createdAt": "2023-12-15 13:09:21",
+    "buyingCheck": 0,
+    "buyingDate": null
+  },
+  {
+    "productPk": 19,
+    "userPk": 1,
+    "productNm": "상품명",
+    "categoryNm": "기타",
+    "memo": "메모",
+    "createdAt": "2023-12-15 14:31:58",
+    "buyingCheck": 1,
+    "buyingDate": "2023-12-15"
+  }
+]

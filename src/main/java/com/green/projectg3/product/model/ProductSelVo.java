@@ -11,6 +11,8 @@ public class ProductSelVo {
 
     private int categoryPk;
 
+    private int userPk;
+
     private String categoryNm;
 
     private String productNm;

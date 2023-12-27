@@ -52,9 +52,9 @@
         <choose>
             <!-- 만약 프론트에서 isList에 0을 넣게 된다면 -->
             <when test="choiceList == 0">
-                SELECT A.product_pk AS productPk, B.category_nm AS categoryNm,
+                SELECT A.product_pk AS productPk, A.user_pk AS userPk, B.category_nm AS categoryNm,
                 A.product_nm AS productNm, A.memo, A.buying_check AS buyingCheck,
-                A.buying_date AS buyingDate, A.created_at AS createdAt, A.category_pk AS categoryPk
+                DATE(A.buying_date) AS buyingDate, A.created_at AS createdAt, A.category_pk AS categoryPk
                 FROM t_purchase_product A
                 <!-- t_purchase_product(A)에서 product_pk(productPk), product_nm(productNm), -->
                 <!-- memo, buying_check(buyingCheck), buying_date(buyingDate)를 select하고 -->
@@ -67,9 +67,9 @@
             </when>
             <!-- 만약 isList에 1을 넣게 될경우 -->
             <when test="choiceList == 1">
-                SELECT A.product_pk AS productPk, B.category_nm AS categoryNm,
+                SELECT A.product_pk AS productPk, A.user_pk AS userPk, B.category_nm AS categoryNm,
                 A.product_nm AS productNm, A.memo, A.buying_check AS buyingCheck,
-                A.buying_date AS buyingDate, A.created_at AS createdAt, A.category_pk AS categoryPk
+                DATE(A.buying_date) AS buyingDate, A.created_at AS createdAt, A.category_pk AS categoryPk
                 FROM t_purchase_product A
                 JOIN t_category B ON A.category_pk = B.category_pk
                 WHERE A.user_pk = #{userPk} AND A.buying_check = 0
@@ -77,9 +77,9 @@
             </when>
             <!-- 만약 isList에 2를 넣게될경우 -->
             <when test="choiceList == 2">
-                SELECT A.product_pk AS productPk, B.category_nm AS categoryNm,
+                SELECT A.product_pk AS productPk, A.user_pk AS userPk, B.category_nm AS categoryNm,
                 A.product_nm AS productNm, A.memo, A.buying_check AS buyingCheck,
-                A.buying_date AS buyingDate, A.created_at AS createdAt, A.category_pk AS categoryPk
+                DATE(A.buying_date) AS buyingDate, A.created_at AS createdAt, A.category_pk AS categoryPk
                 FROM t_purchase_product A
                 JOIN t_category B ON A.category_pk = B.category_pk
                 WHERE A.user_pk = #{userPk} AND A.buying_check = 1
